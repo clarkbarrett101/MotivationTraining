@@ -32,7 +32,6 @@ export default function Slide() {
       justifyContent: "center",
       alignItems: "center",
       gap: 20,
-      border: "1px solid black",
     },
     inputField: {
       flex: 1,
@@ -44,12 +43,21 @@ export default function Slide() {
       display: "flex",
       flexDirection: "column",
     },
-    inputFieldText: {
+    questionPrompt: {
       color: "hsl(180, 100%, 25%)",
       fontWeight: "bold",
       fontSize: 20,
+    },
+
+    inputFieldText: {
+      color: "hsl(180, 100%, 25%)",
+      backgroundColor: "none",
+      border: "none",
+      borderRadius: 10,
+      fontWeight: "bold",
+      fontSize: 20,
       flex: 1,
-      border: "1px solid black",
+      margin: 10,
     },
   };
   return (
@@ -59,12 +67,20 @@ export default function Slide() {
         <p style={styles.body}>Content Body</p>
 
         <p style={styles.inputField}>
-          <div style={styles.inputFieldText}>Question Prompt</div>
+          <div style={styles.questionPrompt}>Question Prompt?</div>
+          <input
+            style={styles.inputFieldText}
+            type="text"
+            placeholder="Type your response here"
+          />
           <SimpleButton
             hoverText="Submit Response"
             normalText="Submit Response"
             hoverColor="hsl(200, 100%, 25%)"
             normalColor="hsl(200, 100%, 75%)"
+            onClick={() => {
+              setIsActive(!isActive);
+            }}
           />
         </p>
       </div>
@@ -88,6 +104,7 @@ function SimpleButton({
   inactiveColor,
   width = "50%",
   isActive = true,
+  onClick,
 }) {
   const [buttonHover, setButtonHover] = React.useState(false);
   return (
@@ -96,7 +113,6 @@ function SimpleButton({
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "flex-end",
-        border: "1px solid black",
       }}
     >
       <button
@@ -129,6 +145,14 @@ function SimpleButton({
             return;
           }
           setButtonHover(false);
+        }}
+        onClick={(e) => {
+          if (!isActive) {
+            return;
+          }
+          if (onClick) {
+            onClick();
+          }
         }}
       >
         {buttonHover ? hoverText || "Hovered" : normalText || "Hover me"}
