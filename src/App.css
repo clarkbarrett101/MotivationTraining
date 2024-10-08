@@ -1,0 +1,10 @@
+input{
+
+}
+input::placeholder{
+  color: rgba(0, 0, 0, 0.5);
+  text-wrap: wrap;
+  text-align: start ;
+  text-justify: distribute;
+  align-self: flex-start;
+}

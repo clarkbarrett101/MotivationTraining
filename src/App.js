@@ -1,11 +1,43 @@
 import React from "react";
 import Slide from "./Slide";
+import slides from "./slideContents.json";
+import ReportCard from "./ReportCard";
 function App() {
-  return (
-    <div className="App">
-      <Slide />
-    </div>
-  );
+  const slide = slides[0];
+  const [responses, setResponses] = React.useState([]);
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+  function next() {
+    setCurrentSlide(currentSlide + 1);
+  }
+  function getSlide() {
+    if (currentSlide === slides.length) {
+      return (
+        <ReportCard
+          questions={slides.map((slide) => slide.question)}
+          responses={responses}
+        />
+      );
+    }
+    const slide = slides[currentSlide];
+    const index = currentSlide;
+    return (
+      <Slide
+        key={index}
+        response={responses[index]}
+        setResponse={(response) => {
+          const newResponses = [...responses];
+          newResponses[index] = response;
+          setResponses(newResponses);
+        }}
+        title={slide.title}
+        body={slide.content}
+        image={slide.image}
+        questionPrompt={slide.question}
+        next={next}
+      />
+    );
+  }
+  return <div className="App">{getSlide()}</div>;
 }
 
 export default App;

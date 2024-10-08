@@ -1,97 +1,132 @@
 import React from "react";
-
-export default function Slide() {
+import "./App.css";
+export default function Slide({
+  response,
+  setResponse,
+  title,
+  body,
+  image,
+  questionPrompt,
+  next,
+}) {
   const [isActive, setIsActive] = React.useState(false);
+  const [currentResponse, setCurrentResponse] = React.useState("");
+  const imageSize = window.innerHeight * 0.4;
+  const hueA = 220;
+  const hueB = 180;
+  const hueC = 140;
   const styles = {
     container: {
       display: "flex",
       flexDirection: "column",
-      backgroundColor: "hsl(200, 90%, 40%)",
+      backgroundColor: `hsl(${hueA}, 50%, 50%)`,
       height: "90vh",
       padding: 20,
       margin: 20,
       borderRadius: 10,
     },
     title: {
-      color: "hsl(180, 100%, 75%)",
-      fontSize: 25,
+      color: `hsl(${hueC}, 100%, 75%)`,
+      fontSize: 35,
     },
 
     body: {
-      flex: 1,
-      backgroundColor: "hsl(180, 50%, 85%)",
+      flex: 2,
+      backgroundColor: `hsl(${hueB}, 50%, 75%)`,
       borderRadius: 20,
-      color: "hsl(180, 100%, 25%)",
+      fontSize: 16,
+      color: `hsl(${hueB}, 100%, 25%)`,
       fontWeight: "bold",
+      height: "auto",
       padding: 20,
-      height: "50%",
+    },
+    image: {
+      width: "auto",
+      height: imageSize,
+      borderRadius: 20,
     },
     bodyContainer: {
-      flex: 1,
+      flex: 2,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       gap: 20,
+      border: "1px solid black",
     },
     inputField: {
       flex: 1,
       padding: 20,
       borderRadius: 20,
       border: "none",
-      backgroundColor: "hsl(180, 50%, 85%)",
+      backgroundColor: `hsl(${hueB}, 50%, 75%)`,
       height: "50%",
       display: "flex",
       flexDirection: "column",
+      gap: 10,
     },
     questionPrompt: {
-      color: "hsl(180, 100%, 25%)",
+      color: `hsl(${hueB}, 100%, 25%)`,
       fontWeight: "bold",
       fontSize: 20,
     },
 
     inputFieldText: {
-      color: "hsl(180, 100%, 25%)",
-      backgroundColor: "none",
+      color: `hsl(${hueB}, 100%, 25%)`,
+      backgroundColor: `hsl(${hueB}, 50%, 75%)`,
       border: "none",
       borderRadius: 10,
       fontWeight: "bold",
       fontSize: 20,
       flex: 1,
-      margin: 10,
     },
   };
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Slide</h1>
+      <h1 style={styles.title}>{title || "Slide Topic"}</h1>
       <div style={styles.bodyContainer}>
-        <p style={styles.body}>Content Body</p>
-
-        <p style={styles.inputField}>
-          <div style={styles.questionPrompt}>Question Prompt?</div>
-          <input
-            style={styles.inputFieldText}
-            type="text"
-            placeholder="Type your response here"
-          />
-          <SimpleButton
-            hoverText="Submit Response"
-            normalText="Submit Response"
-            hoverColor="hsl(200, 100%, 25%)"
-            normalColor="hsl(200, 100%, 75%)"
-            onClick={() => {
-              setIsActive(!isActive);
-            }}
-          />
-        </p>
+        <img
+          src={image || `https://picsum.photos/500`}
+          alt="placeholder"
+          style={styles.image}
+        />
+        <p style={styles.body}>{body || "Content Body"}</p>
       </div>
+      <p style={styles.inputField}>
+        <div style={styles.questionPrompt}>
+          {questionPrompt || "Question Prompt?"}
+        </div>
+        <input
+          style={styles.inputFieldText}
+          type="text"
+          placeholder="Type your response here"
+          className="input"
+          value={currentResponse}
+          onChange={(e) => setCurrentResponse(e.target.value)}
+        />
+        <SimpleButton
+          hoverText="Submit Response"
+          normalText="Submit Response"
+          hoverColor={`hsl(${hueC}, 100%, 25%)`}
+          normalColor={`hsl(${hueC}, 100%, 75%)`}
+          onClick={() => {
+            setResponse(currentResponse);
+            setIsActive(!isActive);
+          }}
+        />
+      </p>
       <SimpleButton
         hoverText="Next"
         normalText="Next"
-        hoverColor="hsl(200, 100%, 25%)"
-        normalColor="hsl(200, 100%, 75%)"
-        inactiveColor="hsl(200, 25%, 50%)"
+        hoverColor={`hsl(${hueC}, 100%, 25%)`}
+        normalColor={`hsl(${hueC}, 100%, 75%)`}
+        inactiveColor={`hsl(${hueC}, 25%, 50%)`}
         width="20%"
         isActive={isActive}
+        fontSize={25}
+        onClick={() => {
+          next();
+          setIsActive(!isActive);
+        }}
       />
     </div>
   );
@@ -105,6 +140,7 @@ function SimpleButton({
   width = "50%",
   isActive = true,
   onClick,
+  fontSize,
 }) {
   const [buttonHover, setButtonHover] = React.useState(false);
   return (
@@ -127,9 +163,9 @@ function SimpleButton({
               ? normalColor || "hsl(200, 100%, 75%)"
               : hoverColor || "hsl(200, 100%, 25%)"
             : "hsl(200, 25%, 75%)",
-          fontSize: 20,
+          fontSize: fontSize || 15,
           fontWeight: "bold",
-          borderRadius: 20,
+          borderRadius: 50,
           border: "none",
           width: width,
           padding: 10,
