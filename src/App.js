@@ -31,7 +31,7 @@ function App() {
         }}
         title={slide.title}
         body={slide.content}
-        image={slide.image}
+        image={slide.imageLink}
         questionPrompt={slide.question}
         next={next}
       />

@@ -31,18 +31,18 @@ export default function Slide({
     },
 
     body: {
-      flex: 2,
+      flex: 3,
       backgroundColor: `hsl(${hueB}, 50%, 75%)`,
       borderRadius: 20,
-      fontSize: 16,
+      fontSize: 25,
       color: `hsl(${hueB}, 100%, 25%)`,
       fontWeight: "bold",
-      height: "auto",
       padding: 20,
+      height: "80%",
     },
     image: {
-      width: "auto",
       height: imageSize,
+      width: "auto",
       borderRadius: 20,
     },
     bodyContainer: {
@@ -107,6 +107,7 @@ export default function Slide({
           normalText="Submit Response"
           hoverColor={`hsl(${hueC}, 100%, 25%)`}
           normalColor={`hsl(${hueC}, 100%, 75%)`}
+          width="20%"
           onClick={() => {
             setResponse(currentResponse);
             setIsActive(!isActive);
@@ -119,7 +120,7 @@ export default function Slide({
         hoverColor={`hsl(${hueC}, 100%, 25%)`}
         normalColor={`hsl(${hueC}, 100%, 75%)`}
         inactiveColor={`hsl(${hueC}, 25%, 50%)`}
-        width="20%"
+        width="21%"
         isActive={isActive}
         fontSize={25}
         onClick={() => {
