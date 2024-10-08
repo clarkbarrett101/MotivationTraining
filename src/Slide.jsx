@@ -51,7 +51,6 @@ export default function Slide({
       justifyContent: "center",
       alignItems: "center",
       gap: 20,
-      border: "1px solid black",
     },
     inputField: {
       flex: 1,
