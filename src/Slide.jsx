@@ -7,14 +7,16 @@ export default function Slide({
   body,
   image,
   questionPrompt,
+  baseColor,
   next,
 }) {
   const [isActive, setIsActive] = React.useState(false);
   const [currentResponse, setCurrentResponse] = React.useState("");
   const imageSize = window.innerHeight * 0.4;
-  const hueA = 220;
-  const hueB = 180;
-  const hueC = 140;
+
+  const hueA = (baseColor + 40) % 360;
+  const hueB = baseColor % 360;
+  const hueC = (baseColor - 40) % 360;
   const styles = {
     container: {
       display: "flex",
@@ -169,6 +171,7 @@ function SimpleButton({
           border: "none",
           width: width,
           padding: 10,
+          fontFamily: "Quicksand, sans-serif",
         }}
         onMouseEnter={(e) => {
           if (!isActive) {

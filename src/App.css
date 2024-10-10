@@ -7,4 +7,6 @@ input::placeholder{
   text-align: start ;
   text-justify: distribute;
   align-self: flex-start;
+  font-family: 'Quicksand', sans-serif;
+  font-style: italic ;
 }

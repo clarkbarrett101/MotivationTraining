@@ -3,6 +3,8 @@ import Slide from "./Slide";
 import slides from "./slideContents.json";
 import ReportCard from "./ReportCard";
 function App() {
+  document.title = "Motivation Training";
+  document.body.style.backgroundColor = "#ffe";
   const slide = slides[0];
   const [responses, setResponses] = React.useState([]);
   const [currentSlide, setCurrentSlide] = React.useState(0);
@@ -33,6 +35,7 @@ function App() {
         body={slide.content}
         image={slide.imageLink}
         questionPrompt={slide.question}
+        baseColor={slide.baseColor}
         next={next}
       />
     );
