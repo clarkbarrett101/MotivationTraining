@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 export default function Slide({
   response,
   setResponse,
   title,
   body,
-  image,
+  video,
   questionPrompt,
   baseColor,
   next,
@@ -13,25 +13,33 @@ export default function Slide({
   const [isActive, setIsActive] = React.useState(false);
   const [currentResponse, setCurrentResponse] = React.useState("");
   const imageSize = window.innerHeight * 0.4;
-
-  const hueA = (baseColor + 40) % 360;
-  const hueB = baseColor % 360;
-  const hueC = (baseColor - 40) % 360;
+  const [currentColor, setCurrentColor] = React.useState(baseColor);
+  const [timer, setTimer] = React.useState(0);
+  let hueA = (currentColor + 40) % 360;
+  const hueB = currentColor % 360;
+  const hueC = (currentColor - 40) % 360;
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrentColor((baseColor + Math.cos(timer) * 20) % 360);
+      setTimer(timer + 0.1);
+    }, 100);
+  }, [timer]);
   const styles = {
     container: {
       display: "flex",
       flexDirection: "column",
-      backgroundColor: `hsl(${hueA}, 50%, 50%)`,
+      backgroundColor: `hsl(${hueA}, 30%, 50%)`,
       height: "90vh",
       padding: 20,
       margin: 20,
       borderRadius: 10,
     },
     title: {
-      color: `hsl(${hueC}, 100%, 75%)`,
+      color: `hsl(${hueC}, 70%, 75%)`,
       fontSize: 35,
+      paddingLeft: 20,
+      filter: "drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5))",
     },
-
     body: {
       flex: 3,
       backgroundColor: `hsl(${hueB}, 50%, 75%)`,
@@ -40,37 +48,42 @@ export default function Slide({
       color: `hsl(${hueB}, 100%, 25%)`,
       fontWeight: "bold",
       padding: 20,
-      height: "80%",
+      margin: 0,
+      width: "95%",
+      filter: "drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5))",
     },
-    image: {
-      height: imageSize,
-      width: "auto",
+    video: {
       borderRadius: 20,
+      height: window.innerHeight * 0.8,
+      width: window.innerHeight * 0.8 * 0.565,
+      filter: "drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5))",
     },
     bodyContainer: {
-      flex: 2,
+      flex: 1,
       display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: 20,
+      flexDirection: "column",
+      justifyContent: "flex-end",
+      alignItems: "flex-end",
+      padding: 0,
+      width: "100%",
     },
     inputField: {
-      flex: 1,
+      flex: 2,
       padding: 20,
       borderRadius: 20,
       border: "none",
       backgroundColor: `hsl(${hueB}, 50%, 75%)`,
-      height: "50%",
       display: "flex",
       flexDirection: "column",
       gap: 10,
+      width: "95%",
+      filter: "drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5))",
     },
     questionPrompt: {
       color: `hsl(${hueB}, 100%, 25%)`,
       fontWeight: "bold",
       fontSize: 20,
     },
-
     inputFieldText: {
       color: `hsl(${hueB}, 100%, 25%)`,
       backgroundColor: `hsl(${hueB}, 50%, 75%)`,
@@ -84,52 +97,63 @@ export default function Slide({
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>{title || "Slide Topic"}</h1>
-      <div style={styles.bodyContainer}>
-        <img
-          src={image || `https://picsum.photos/500`}
-          alt="placeholder"
-          style={styles.image}
-        />
-        <p style={styles.body}>{body || "Content Body"}</p>
-      </div>
-      <p style={styles.inputField}>
-        <div style={styles.questionPrompt}>
-          {questionPrompt || "Question Prompt?"}
-        </div>
-        <input
-          style={styles.inputFieldText}
-          type="text"
-          placeholder="Type your response here"
-          className="input"
-          value={currentResponse}
-          onChange={(e) => setCurrentResponse(e.target.value)}
-        />
-        <SimpleButton
-          hoverText="Submit Response"
-          normalText="Submit Response"
-          hoverColor={`hsl(${hueC}, 100%, 25%)`}
-          normalColor={`hsl(${hueC}, 100%, 75%)`}
-          width="20%"
-          onClick={() => {
-            setResponse(currentResponse);
-            setIsActive(!isActive);
-          }}
-        />
-      </p>
-      <SimpleButton
-        hoverText="Next"
-        normalText="Next"
-        hoverColor={`hsl(${hueC}, 100%, 25%)`}
-        normalColor={`hsl(${hueC}, 100%, 75%)`}
-        inactiveColor={`hsl(${hueC}, 25%, 50%)`}
-        width="21%"
-        isActive={isActive}
-        fontSize={25}
-        onClick={() => {
-          next();
-          setIsActive(!isActive);
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 20,
         }}
-      />
+      >
+        <video
+          src={video || `https://picsum.photos/500`}
+          alt="placeholder"
+          style={styles.video}
+          autoPlay={true}
+          muted={true}
+          loop={true}
+        />
+        <div style={styles.bodyContainer}>
+          <p style={styles.body}>{body || "Content Body"}</p>
+
+          <p style={styles.inputField}>
+            <div style={styles.questionPrompt}>
+              {questionPrompt || "Question Prompt?"}
+            </div>
+            <input
+              style={styles.inputFieldText}
+              type="text"
+              placeholder="Type your response here"
+              className="input"
+              value={currentResponse}
+              onChange={(e) => setCurrentResponse(e.target.value)}
+            />
+            <SimpleButton
+              hoverText="Submit Response"
+              normalText="Submit Response"
+              hoverColor={`hsl(${hueC}, 100%, 25%)`}
+              normalColor={`hsl(${hueC}, 100%, 75%)`}
+              width="25%"
+              onClick={() => {
+                setResponse(currentResponse);
+                setIsActive(!isActive);
+              }}
+            />
+          </p>
+          <SimpleButton
+            hoverText="Next"
+            normalText="Next"
+            hoverColor={`hsl(${hueC}, 100%, 25%)`}
+            normalColor={`hsl(${hueC}, 100%, 75%)`}
+            inactiveColor={`hsl(${hueC}, 25%, 50%)`}
+            isActive={isActive}
+            fontSize={25}
+            onClick={() => {
+              next();
+              setIsActive(!isActive);
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -151,6 +175,7 @@ function SimpleButton({
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "flex-end",
+        width: "100%",
       }}
     >
       <button
@@ -172,6 +197,7 @@ function SimpleButton({
           width: width,
           padding: 10,
           fontFamily: "Quicksand, sans-serif",
+          filter: "drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25))",
         }}
         onMouseEnter={(e) => {
           if (!isActive) {

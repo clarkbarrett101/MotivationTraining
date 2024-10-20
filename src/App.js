@@ -6,6 +6,7 @@ function App() {
   document.title = "Motivation Training";
   document.body.style.backgroundColor = "#ffe";
   const slide = slides[0];
+  const [videoId, setVideoId] = React.useState(0);
   const [responses, setResponses] = React.useState([]);
   const [currentSlide, setCurrentSlide] = React.useState(0);
   function next() {
@@ -33,9 +34,9 @@ function App() {
         }}
         title={slide.title}
         body={slide.content}
-        image={slide.imageLink}
+        video={"./" + parseInt(slide.baseColor) + ".mp4"}
         questionPrompt={slide.question}
-        baseColor={slide.baseColor}
+        baseColor={parseInt(slide.baseColor)}
         next={next}
       />
     );

@@ -2,15 +2,43 @@
   {
     "title": "Intrinsic Motivation",
     "content": "Intrinsic motivation is when people are driven in their own direction by curiosity, ambition, or passion for the cause.  People will work harder and for longer and feel more fulfilled by the work.  Although some people are so conditioned to respond to external motivators, they’re unsure what they even strive for or find meaning in.",
-    "imageLink": "https://classful.com/wp-content/uploads/2023/02/Intrinsic-motivation.jpg",
-    "baseColor": "200",
-    "question": "What do you feel intrinsically motivated to do?"
+    "baseColor": "90",
+    "question": "What are you passionate about in your personal life?"
   },
   {
     "title": "Extrinsic Motivation",
     "content": "Extrinsic Motivation when someone is driven by the reward or compensation for completing the task.  As soon as the compensation is removed, the motivation goes with it.  Giving extrinsic rewards for behavior someone is already intrinsically motivated to do makes them less passionate about doing it because it then feels like a job.",
-    "imageLink": "https://complogix.io/wp-content/uploads/2018/04/Compensation-planning-and-retention.png",
     "baseColor": "120",
-    "question": "What are some extrinsic motivators in your life?"
+    "question": "Where do you see yourself in 5-10 years?"
+  },
+  {
+    "title": "Set Small Goals to Build Momentum",
+    "content": "Getting started is often the hardest part on low-motivation days, and starting is much easier when the task is small.​\nNaval Admiral William H. McRaven said “If you want to change the world, start off by making your bed. If you make your bed every morning, you will have accomplished the first task of the day. It will give you a small sense of pride, and it will encourage you to do another task, and another, and another.” ​\nResearch shows that frequent small successes can build a sense of momentum that can in turn drive long-term success, especially early in the process. Whatever your big goal may be, start by breaking it down into smaller chunks. ",
+    "baseColor": "150",
+    "question": "Question 3"
+  },
+  {
+    "title": "Track Your Progress",
+    "content": "Seeing progress can be highly motivating. You can find many tools out there to help you track your goals. This could be as simple as a to-do list or calendar where you can cross off tasks or days as you complete them. ​\nFor instance, you can use a free tool like Trello, which allow you to create digital task board to categorize your big goal into daily, weekly, monthly, or even yearly sub goals.​\nAnother option is to draw a progress bar on a sheet of poster board or paper. Hang it somewhere where you’ll see it regularly, and fill it in as you get closer to your goal.",
+    "baseColor": "180",
+    "question": "Question 4"
+  },
+  {
+    "title": "Reward Yourself",
+    "content": "It feels good to be rewarded for our work. But rewards can also improve motivation and performance. Rewarding yourself for reaching small milestones and completing big goals could boost your interest and enjoyment in the work you’re doing.​ These rewards don’t have to be big or cost a lot of money. Here there is a list of ideas you could use to reward yourself:​\nTake a short break​\nGo for a walk outside​\nEnjoy your favorite snack​\nRead a chapter of your favorite book​\nSpend a few minutes meditating​\nListen to an episode of your favorite podcast​\nPlan a night out with friends​\nPlay an online game​\nVisit a free museum or attraction​\nHave a long bath or shower​\nCall a friend or family member",
+    "baseColor": "210",
+    "question": "Question 5"
+  },
+  {
+    "title": "Embrace Positive Peer Pressure",
+    "content": "You’re ultimately the one who puts in the work to achieve your goals. But other people can be a great motivator. \nResearch shows that feeling like you are part of a team can lead to boosted perseverance, engagement, and performance, even if you’re working alone. Depending on your goal, this might mean joining a study group, running team, gym class, professional organization, or virtual challenge. \nAnother way to embrace positive peer pressure is sharing your goal  with someone whose opinion you value can strengthen your commitment to attaining that goa​ls. For instance, you can share your goals with a mentor or supervisor.",
+    "baseColor": "240",
+    "question": "Question 6"
+  },
+  {
+    "title": "Change your Environment",
+    "content": "Sometimes a change of scenery can help you to do your task with fresh eyes and a new sense of motivation. This is called the novelty effect that is a short-term boost that comes from altering your environment.​\nFor instance, If you usually study at home, have a session at your local library. Do you always watch lecture videos on your computer? Try downloading them to your phone to watch outside in the park. Switch up your running route, or try a new exercise routine. ",
+    "baseColor": "270",
+    "question": "Question 7"
   }
 ]
